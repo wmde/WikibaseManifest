@@ -9,6 +9,21 @@
     "MessagesDirs": {
         "WikibaseManifest": [ "i18n" ]
     },
-    "AutoloadClasses": [],
-    "type": "other"
+    "AutoloadNamespaces": {
+		"MediaWiki\\Extension\\WikibaseManifest\\": "includes/"
+	},
+    "type": "other",
+	"RestRoutes": [
+		{
+			"path": "/wikibase/manifest/v0/manifest",
+			"method": "GET",
+			"class": "MediaWiki\\Extension\\WikibaseManifest\\RestApi",
+			"services": [
+				"WikibaseManifestGenerator"
+			]
+		}
+	],
+	"ServiceWiringFiles": [
+		"includes/ServiceWiring.php"
+	]
 }
