@@ -1,0 +1,9 @@
+{
+    "@metadata": {
+        "authors": [
+            "WMDE"
+        ]
+    },
+    "wikibaseManifest": "The name of the extension",
+    "wikibaseManifest-desc": "{{desc|name=WikibaseManifest|url=}}"
+}

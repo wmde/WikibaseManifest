@@ -1,0 +1,29 @@
+{
+    "name": "WikibaseManifest",
+    "author": "The Wikidata team",
+    "license-name": "GPL-2.0-or-later",
+    "version": "0.0.1",
+    "namemsg": "wikibaseManifest",
+    "descriptionmsg": "wikibaseManifest-desc",
+    "manifest_version": 1,
+    "MessagesDirs": {
+        "WikibaseManifest": [ "i18n" ]
+    },
+    "AutoloadNamespaces": {
+		"MediaWiki\\Extension\\WikibaseManifest\\": "includes/"
+	},
+    "type": "other",
+	"RestRoutes": [
+		{
+			"path": "/wikibase/manifest/v0/manifest",
+			"method": "GET",
+			"class": "MediaWiki\\Extension\\WikibaseManifest\\RestApi",
+			"services": [
+				"WikibaseManifestGenerator"
+			]
+		}
+	],
+	"ServiceWiringFiles": [
+		"includes/ServiceWiring.php"
+	]
+}
