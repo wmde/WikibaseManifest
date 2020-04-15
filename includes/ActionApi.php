@@ -4,6 +4,7 @@
 namespace MediaWiki\Extension\WikibaseManifest;
 
 
-class ActionApi {
+class ActionApi
+{
 
 }

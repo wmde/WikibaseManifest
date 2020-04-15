@@ -5,6 +5,7 @@ use MediaWiki\MediaWikiServices;
 
 return [
     'WikibaseManifestGenerator' => function ( MediaWikiServices $services ) {
-        return new ManifestGenerator();
-    }
+        $config = $services->getMainConfig();
+        return new ManifestGenerator($config);
+    },
 ];

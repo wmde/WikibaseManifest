@@ -2,10 +2,24 @@
 
 namespace MediaWiki\Extension\WikibaseManifest;
 
+use Config;
+
 class ManifestGenerator
 {
-    public function generate()
+    private $config;
+
+    public function __construct( Config $config ) 
     {
-        return ['duck'];
+        $this->config = $config;
+    }
+
+    public function generate() 
+    {
+        $config = $this->config;
+
+        return [
+         'name' => $config->get('Sitename'),
+         'rootScriptUrl' => $config->get('Server') . $config->get('ScriptPath')
+        ];
     }
 }
