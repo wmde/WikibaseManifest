@@ -1,7 +1,7 @@
 https://www.mediawiki.org/wiki/Wikibase/Indexing/RDF_Dump_Format
 
 We investigated listing some form of all URIS that were needed in the manifest.
-This seemed a bit pointless as most of the URI mid sections are hard coded in RdfVocabulry.php and therefor should be easy to calculate.
+This seemed a bit pointless as most of the URI mid sections are hard coded in RdfVocabulary.php and therefor should be easy to calculate.
 
 **data uri**
 We found one unusual prefix, "data:", which doesn't correspond to "wdata:" from the docs but seems about the same.
