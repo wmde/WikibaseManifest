@@ -1,5 +1,7 @@
 .idea
 .floo
 .flooignore
+.eslintcache
 composer.lock
-/vendor
+vendor
+node_modules

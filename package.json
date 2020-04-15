@@ -1,0 +1,21 @@
+{
+	"name": "wikibasemanifest",
+	"version": "0.0.1",
+	"description": "",
+	"scripts": {
+		"api-testing": "mocha --timeout 0 --recursive tests/api-testing",
+		"api-testing-lint": "eslint --cache --max-warnings 0 tests/api-testing/**"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/wmde/WikibaseManifest.git"
+	},
+	"devDependencies": {
+		"api-testing": "1.0.3",
+		"eslint-config-wikimedia": "^0.15.1"
+	},
+	"author": "",
+	"dependencies": {
+		"mocha": "^7.1.1"
+	}
+}
