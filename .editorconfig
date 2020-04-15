@@ -1,7 +1,7 @@
 # http://editorconfig.org
 root = true
 
-[*.php]
+[*]
 charset=utf-8
 end_of_line=lf
 trim_trailing_whitespace=true

@@ -9,9 +9,11 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \MediaWiki\Extension\WikibaseManifest\EquivEntities
  */
-class EquivEntitiesTest  extends TestCase {
+class EquivEntitiesTest  extends TestCase
+{
 
-    public function dataProvider() {
+    public function dataProvider() 
+    {
         return [
             [ [ 'P12' => 'P34' ], true ],
             [ [ 'P12' => 12 ], false ],
@@ -23,12 +25,13 @@ class EquivEntitiesTest  extends TestCase {
     /**
      * @dataProvider dataProvider
      */
-    public function test( $mapping, $expectedSuccess ) {
-        if ( !$expectedSuccess ) {
-            $this->expectException( InvalidArgumentException::class );
+    public function test( $mapping, $expectedSuccess ) 
+    {
+        if (!$expectedSuccess ) {
+            $this->expectException(InvalidArgumentException::class);
         }
-        $value = new EquivEntities( $mapping );
-        $this->assertEquals( $mapping, $value->toArray() );
+        $value = new EquivEntities($mapping);
+        $this->assertEquals($mapping, $value->toArray());
     }
 
 }

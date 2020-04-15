@@ -3,6 +3,7 @@
 namespace WikibaseManifest\Test;
 
 use HashConfig;
+use MediaWiki\Extension\WikibaseManifest\EquivEntities;
 use MediaWiki\Extension\WikibaseManifest\ManifestGenerator;
 use PHPUnit\Framework\TestCase;
 
@@ -24,13 +25,23 @@ class ManifestGeneratorTest extends TestCase
             'ScriptPath' => $scriptString,
             ]
         );
-        $generator = new ManifestGenerator($mockConfig);
+        $equivEntities = new EquivEntities([ 'P1' => 'P2' ]);
+
+        $generator = new ManifestGenerator(
+            $mockConfig,
+            $equivEntities
+        );
         $result = $generator->generate();
 
         $this->assertEquals(
             [
-            'name' => $siteString,
-            'rootScriptUrl' => $serverString . $scriptString,
+                'name' => $siteString,
+                'rootScriptUrl' => $serverString . $scriptString,
+                'equivEntities' => [
+                    'wikidata' => [
+                        'P1' => 'P2'
+                    ],
+                ]
             ],
             $result
         );

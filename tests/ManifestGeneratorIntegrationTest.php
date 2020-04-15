@@ -23,6 +23,9 @@ class ManifestGeneratorIntegrationTest extends MediaWikiTestCase
             'wgServer' => $serverString,
             'wgSitename' => $siteString,
             'wgScriptPath' => $scriptString,
+            'wgWbManifestWikidataMapping' => [
+                'P1' => 'P2'
+            ],
             ]
         );
         $generator = MediaWikiServices::getInstance()->getService('WikibaseManifestGenerator');
@@ -30,8 +33,13 @@ class ManifestGeneratorIntegrationTest extends MediaWikiTestCase
 
         $this->assertEquals(
             [
-            'name' => $siteString,
-            'rootScriptUrl' => $rootScriptUrlString,
+                'name' => $siteString,
+                'rootScriptUrl' => $rootScriptUrlString,
+                'equivEntities' => [
+                    'wikidata' => [
+                        'P1' => 'P2'
+                    ],
+                ],
             ],
             $result
         );

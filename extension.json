@@ -1,18 +1,26 @@
 {
-    "name": "WikibaseManifest",
-    "author": "The Wikidata team",
-    "license-name": "GPL-2.0-or-later",
-    "version": "0.0.1",
-    "namemsg": "wikibaseManifest",
-    "descriptionmsg": "wikibaseManifest-desc",
-    "manifest_version": 1,
-    "MessagesDirs": {
-        "WikibaseManifest": [ "i18n" ]
-    },
-    "AutoloadNamespaces": {
+	"name": "WikibaseManifest",
+	"author": "The Wikidata team",
+	"license-name": "GPL-2.0-or-later",
+	"version": "0.0.1",
+	"namemsg": "wikibaseManifest",
+	"descriptionmsg": "wikibaseManifest-desc",
+	"manifest_version": 2,
+	"MessagesDirs": {
+		"WikibaseManifest": [
+			"i18n"
+		]
+	},
+	"config": {
+		"WbManifestWikidataMapping": {
+			"description": "The mapping of Wikidata entity ids to local Wikibase entity ids.",
+			"value": []
+		}
+	},
+	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\WikibaseManifest\\": "includes/"
 	},
-    "type": "other",
+	"type": "other",
 	"RestRoutes": [
 		{
 			"path": "/wikibase/manifest/v0/manifest",
