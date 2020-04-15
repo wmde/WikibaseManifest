@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 class ManifestGeneratorIntegrationTest extends MediaWikiTestCase
 {
 
-    public function testGenerate() 
+    public function testGenerate()
     {
         $siteString = 'manifestsite';
         $serverString = 'http://cat/dog';
@@ -31,7 +31,7 @@ class ManifestGeneratorIntegrationTest extends MediaWikiTestCase
         $this->assertEquals(
             [
             'name' => $siteString,
-            'rootScriptUrl' => $rootScriptUrlString
+            'rootScriptUrl' => $rootScriptUrlString,
             ],
             $result
         );

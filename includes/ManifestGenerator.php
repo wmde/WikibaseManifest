@@ -19,7 +19,8 @@ class ManifestGenerator
 
         return [
          'name' => $config->get('Sitename'),
-         'rootScriptUrl' => $config->get('Server') . $config->get('ScriptPath')
+         'rootScriptUrl' => $config->get('Server') . $config->get('ScriptPath'),
+
         ];
     }
 }

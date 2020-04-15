@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 class ManifestGeneratorTest extends TestCase
 {
 
-    public function testGenerate() 
+    public function testGenerate()
     {
         $siteString = 'manifestsite';
         $serverString = 'http://cat/dog';
@@ -21,8 +21,8 @@ class ManifestGeneratorTest extends TestCase
             [
             'Server' => $serverString,
             'Sitename' => $siteString,
-            'ScriptPath' => $scriptString
-            ] 
+            'ScriptPath' => $scriptString,
+            ]
         );
         $generator = new ManifestGenerator($mockConfig);
         $result = $generator->generate();
@@ -30,8 +30,9 @@ class ManifestGeneratorTest extends TestCase
         $this->assertEquals(
             [
             'name' => $siteString,
-            'rootScriptUrl' => $serverString . $scriptString
-             ], $result 
+            'rootScriptUrl' => $serverString . $scriptString,
+            ],
+            $result
         );
     }
 }
