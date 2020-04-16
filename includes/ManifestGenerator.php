@@ -3,21 +3,21 @@
 namespace MediaWiki\Extension\WikibaseManifest;
 
 use Config;
-use Wikibase\Repo\WikibaseRepo;
+
 
 class ManifestGenerator
 {
     private $config;
-    private $equivEntities;
+    private $equivEntitiesFactory;
     private $conceptNamespaces;
 
     public function __construct(
         Config $config,
-        EquivEntities $equivEntities,
+        EquivEntitiesFactory $equivEntitiesFactory,
         ConceptNamespaces $conceptNamespaces
     ) {
         $this->config = $config;
-        $this->equivEntities = $equivEntities;
+        $this->equivEntitiesFactory = $equivEntitiesFactory;
         $this->conceptNamespaces = $conceptNamespaces;
     }
 
@@ -26,13 +26,16 @@ class ManifestGenerator
         $config = $this->config;
 
         $localRdfNamespaces = $this->conceptNamespaces->getLocal();
+        // TODO perhaps we should only add keys to this result when the values are not empty
         return [
             'name' => $config->get('Sitename'),
             'rootScriptUrl' => $config->get('Server') . $config->get('ScriptPath'),
             'equivEntities' => [
-                'wikidata' => $this->equivEntities->toArray(),
+                'wikidata' => $this->equivEntitiesFactory->getEquivEntities()->toArray()
             ],
             'localRdfNamespaces' => $localRdfNamespaces,
+            // TODO finish implementing
+            'externalServices' => [ 'a' => 'b' ],
         ];
     }
 

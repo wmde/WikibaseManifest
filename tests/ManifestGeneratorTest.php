@@ -5,6 +5,7 @@ namespace WikibaseManifest\Test;
 use HashConfig;
 use MediaWiki\Extension\WikibaseManifest\ConceptNamespaces;
 use MediaWiki\Extension\WikibaseManifest\EquivEntities;
+use MediaWiki\Extension\WikibaseManifest\EquivEntitiesFactory;
 use MediaWiki\Extension\WikibaseManifest\ManifestGenerator;
 use PHPUnit\Framework\TestCase;
 
@@ -19,6 +20,7 @@ class ManifestGeneratorTest extends TestCase
         $siteString = 'manifestsite';
         $serverString = 'http://cat/dog';
         $scriptString = '/wikipath';
+        $equivEntities = [ 'P1' => 'P2' ];
         $mockConfig = new HashConfig(
             [
             'Server' => $serverString,
@@ -26,7 +28,11 @@ class ManifestGeneratorTest extends TestCase
             'ScriptPath' => $scriptString,
             ]
         );
-        $equivEntities = new EquivEntities([ 'P1' => 'P2' ]);
+
+        $mockEquivEntitiesFactory = $this->createMock( EquivEntitiesFactory::class );
+        $mockEquivEntitiesFactory->expects( $this->once() )
+            ->method( 'getEquivEntities' )
+            ->willReturn( new EquivEntities( $equivEntities ) );
 
         $mockConceptNamespaces = $this->createMock( ConceptNamespaces::class );
         $mockConceptNamespaces->expects( $this->once() )
@@ -35,7 +41,7 @@ class ManifestGeneratorTest extends TestCase
 
         $generator = new ManifestGenerator(
             $mockConfig,
-            $equivEntities,
+            $mockEquivEntitiesFactory,
             $mockConceptNamespaces
         );
         $result = $generator->generate();
@@ -45,11 +51,10 @@ class ManifestGeneratorTest extends TestCase
                 'name' => $siteString,
                 'rootScriptUrl' => $serverString . $scriptString,
                 'equivEntities' => [
-                    'wikidata' => [
-                        'P1' => 'P2'
-                    ],
+                    'wikidata' => $equivEntities,
                 ],
-                'localRdfNamespaces' => [ 'a' => 'bb' ]
+                'localRdfNamespaces' => [ 'a' => 'bb' ],
+                'externalServices' => [ 'a' => 'b' ],
             ],
             $result
         );

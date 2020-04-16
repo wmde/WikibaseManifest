@@ -19,7 +19,7 @@ return [
 
         return new ManifestGenerator(
             $services->getMainConfig(),
-            $equivEntitiesFactory->getEquivEntities(),
+            $equivEntitiesFactory,
             $conceptNamespaces
         );
     },
