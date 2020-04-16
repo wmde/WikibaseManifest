@@ -14,6 +14,20 @@ class ConfigExternalServicesFactoryTest extends TestCase {
             [ [], [
                 'WbManifestExternalServiceMapping' => [],
                 'WBRepoSettings' => [ 'sparqlEndpoint' => null ],
+            ]
+            ],
+            [ [ 'queryservice' => 'http://something.com' ], [
+                'WbManifestExternalServiceMapping' => [],
+                'WBRepoSettings' => [ 'sparqlEndpoint' => 'http://something.com' ],
+            ]
+            ],
+            [ [ 'queryservice' => 'http://something.com', 'quickstatements' => 'http://quickstatement.net' ], [
+                'WbManifestExternalServiceMapping' => [ 'quickstatements' => 'http://quickstatement.net' ],
+                'WBRepoSettings' => [ 'sparqlEndpoint' => 'http://something.com' ],
+            ] ],
+            [ [ 'queryservice' => 'http://somethingelse.com' ], [
+                'WbManifestExternalServiceMapping' => [ 'queryservice' => 'http://somethingelse.com' ],
+                'WBRepoSettings' => [ 'sparqlEndpoint' => 'http://something.com' ],
             ] ],
         ];
     }
