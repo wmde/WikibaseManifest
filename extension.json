@@ -12,8 +12,12 @@
 		]
 	},
 	"config": {
-		"WbManifestWikidataMapping": {
+		"WbManifestWikidataEntityMapping": {
 			"description": "The mapping of Wikidata entity ids to local Wikibase entity ids.",
+			"value": []
+		},
+		"WbManifestExternalServiceMapping": {
+			"description": "The mapping of external service identifiers to URLs.",
 			"value": []
 		}
 	},

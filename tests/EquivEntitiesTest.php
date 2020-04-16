@@ -12,20 +12,20 @@ use PHPUnit\Framework\TestCase;
 class EquivEntitiesTest  extends TestCase
 {
 
-    public function dataProvider() 
+    public function dataProvider()
     {
         return [
-            [ [ 'P12' => 'P34' ], true ],
-            [ [ 'P12' => 12 ], false ],
-            [ [ 45 => 'P34' ], false ],
-            [ [ 45 => null ], false ],
+            [ true,[ 'P12' => 'P34' ] ],
+            [ false, [ 'P12' => 12 ] ],
+            [ false, [ 45 => 'P34' ] ],
+            [ false, [ 45 => null ] ],
         ];
     }
 
     /**
      * @dataProvider dataProvider
      */
-    public function test( $mapping, $expectedSuccess ) 
+    public function test( $expectedSuccess, $mapping )
     {
         if (!$expectedSuccess ) {
             $this->expectException(InvalidArgumentException::class);

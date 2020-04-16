@@ -27,7 +27,7 @@ class ManifestGeneratorIntegrationTest extends MediaWikiTestCase
             'wgServer' => $serverString,
             'wgSitename' => $siteString,
             'wgScriptPath' => $scriptString,
-            'wgWbManifestWikidataMapping' => $equivEntities,
+            'wgWbManifestWikidataEntityMapping' => $equivEntities,
             ]
         );
         $generator = MediaWikiServices::getInstance()->getService('WikibaseManifestGenerator');

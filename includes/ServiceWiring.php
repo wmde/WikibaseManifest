@@ -4,6 +4,7 @@ use MediaWiki\Extension\WikibaseManifest\ConceptNamespaces;
 use MediaWiki\Extension\WikibaseManifest\ConfigEquivEntitiesFactory;
 use MediaWiki\Extension\WikibaseManifest\EquivEntitiesFactory;
 use MediaWiki\Extension\WikibaseManifest\ManifestGenerator;
+use MediaWiki\Extension\WikibaseManifest\WbManifest;
 use MediaWiki\MediaWikiServices;
 use Wikibase\Repo\WikibaseRepo;
 
@@ -25,7 +26,7 @@ return [
     },
     'WikibaseManifestConfigEquivEntitiesFactory' => function ( MediaWikiServices $services ) {
         return new ConfigEquivEntitiesFactory(
-            $services->getMainConfig(), 'WbManifestWikidataMapping'
+            $services->getMainConfig(), WbManifest::ENTITY_MAPPING_CONFIG
         );
     },
     'WikibaseManifestConceptNamespaces' => function ( ) {
