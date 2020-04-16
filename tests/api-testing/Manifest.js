@@ -3,7 +3,7 @@ const { assert, REST } = require( 'api-testing' );
 describe( 'Manifest', () => {
 	const client = new REST( 'rest.php/wikibase/manifest/v0' );
 
-	describe( 'GET /search/page?q={term}', () => {
+	describe( 'GET /manifest', () => {
 		it( 'should return the manifest', async () => {
 			const { body } = await client.get( '/manifest' );
 			assert.hasAllKeys(

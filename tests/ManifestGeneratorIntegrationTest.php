@@ -22,33 +22,37 @@ class ManifestGeneratorIntegrationTest extends MediaWikiTestCase
         $scriptString = '/wikipath';
         $rootScriptUrlString = $serverString . $scriptString;
         $equivEntities = [ 'P1' => 'P2' ];
+        $externalServices = [ 'quickstatements' => 'http://quickstatements.net' ];
         $this->setMwGlobals(
             [
             'wgServer' => $serverString,
             'wgSitename' => $siteString,
             'wgScriptPath' => $scriptString,
             'wgWbManifestWikidataEntityMapping' => $equivEntities,
+            'wgWbManifestExternalServiceMapping' => $externalServices,
             ]
         );
+        $this->mergeMwGlobalArrayValue( 'wgWBRepoSettings', [ 'sparqlEndpoint' => null ] );
         $generator = MediaWikiServices::getInstance()->getService('WikibaseManifestGenerator');
         $result = $generator->generate();
 
         $this->assertArrayHasKey( self::NAME, $result );
         $this->assertIsString( $result[self::NAME] );
-        $this->assertEquals( $result[self::NAME], $siteString );
+        $this->assertEquals( $siteString, $result[self::NAME] );
 
         $this->assertArrayHasKey( self::ROOT_SCRIPT_URL, $result );
         $this->assertIsString( $result[self::ROOT_SCRIPT_URL] );
-        $this->assertEquals( $result[self::ROOT_SCRIPT_URL], $rootScriptUrlString );
+        $this->assertEquals( $rootScriptUrlString, $result[self::ROOT_SCRIPT_URL] );
 
         $this->assertArrayHasKey( self::EQUIV_ENTITIES, $result );
         $this->assertIsArray( $result[self::EQUIV_ENTITIES] );
         $this->assertArrayHasKey( 'wikidata', $result[self::EQUIV_ENTITIES] );
         $this->assertIsArray( $result[self::EQUIV_ENTITIES]['wikidata'] );
-        $this->assertArrayEquals( $result[self::EQUIV_ENTITIES]['wikidata'], $equivEntities );
+        $this->assertArrayEquals( $equivEntities, $result[self::EQUIV_ENTITIES]['wikidata'] );
 
         $this->assertArrayHasKey( self::EXTERNAL_SERVICES, $result );
         $this->assertIsArray( $result[self::EXTERNAL_SERVICES] );
+        $this->assertArrayEquals( $externalServices, $result[self::EXTERNAL_SERVICES] );
 
         $this->assertArrayHasKey( self::LOCAL_RDF_NAMESPACES, $result );
         $this->assertIsArray( $result[self::LOCAL_RDF_NAMESPACES] );

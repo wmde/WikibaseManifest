@@ -37,7 +37,7 @@ class ExternalServices
     {
         foreach( $mapping as $k => $v ) {
             if(!is_string($k) || !in_array( $k, self::WHITELIST )) {
-                throw new InvalidArgumentException('Keys of mapping should be strings');
+                throw new InvalidArgumentException('Keys of mapping should be whitelisted strings');
             }
             if ( !is_string( $v ) || !filter_var( $v, FILTER_VALIDATE_URL ) ) {
                 throw new InvalidArgumentException( 'Values of mapping should be string URLs' );

@@ -10,15 +10,18 @@ class ManifestGenerator
     private $config;
     private $equivEntitiesFactory;
     private $conceptNamespaces;
+    private $externalServicesFactory;
 
     public function __construct(
         Config $config,
         EquivEntitiesFactory $equivEntitiesFactory,
-        ConceptNamespaces $conceptNamespaces
+        ConceptNamespaces $conceptNamespaces,
+        ExternalServicesFactory $externalServicesFactory
     ) {
         $this->config = $config;
         $this->equivEntitiesFactory = $equivEntitiesFactory;
         $this->conceptNamespaces = $conceptNamespaces;
+        $this->externalServicesFactory = $externalServicesFactory;
     }
 
     public function generate(): array
@@ -26,6 +29,7 @@ class ManifestGenerator
         $config = $this->config;
 
         $localRdfNamespaces = $this->conceptNamespaces->getLocal();
+        $externalServices = $this->externalServicesFactory->getExternalServices();
         // TODO perhaps we should only add keys to this result when the values are not empty
         return [
             'name' => $config->get('Sitename'),
@@ -34,8 +38,7 @@ class ManifestGenerator
                 'wikidata' => $this->equivEntitiesFactory->getEquivEntities()->toArray()
             ],
             'localRdfNamespaces' => $localRdfNamespaces,
-            // TODO finish implementing
-            'externalServices' => [ 'a' => 'b' ],
+            'externalServices' => $externalServices->toArray(),
         ];
     }
 

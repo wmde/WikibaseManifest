@@ -6,6 +6,8 @@ use HashConfig;
 use MediaWiki\Extension\WikibaseManifest\ConceptNamespaces;
 use MediaWiki\Extension\WikibaseManifest\EquivEntities;
 use MediaWiki\Extension\WikibaseManifest\EquivEntitiesFactory;
+use MediaWiki\Extension\WikibaseManifest\ExternalServices;
+use MediaWiki\Extension\WikibaseManifest\ExternalServicesFactory;
 use MediaWiki\Extension\WikibaseManifest\ManifestGenerator;
 use PHPUnit\Framework\TestCase;
 
@@ -39,10 +41,16 @@ class ManifestGeneratorTest extends TestCase
             ->method( 'getLocal' )
             ->willReturn( [ 'a' => 'bb' ] );
 
+        $mockExternalServicesFactory = $this->createMock( ExternalServicesFactory::class );
+        $externalServicesMappings = [ 'queryservice' => 'http://services.something' ];
+        $mockExternalServicesFactory->expects( $this->once() )
+            ->method( 'getExternalServices' )
+            ->willReturn( new ExternalServices( $externalServicesMappings ) );
         $generator = new ManifestGenerator(
             $mockConfig,
             $mockEquivEntitiesFactory,
-            $mockConceptNamespaces
+            $mockConceptNamespaces,
+            $mockExternalServicesFactory
         );
         $result = $generator->generate();
 
@@ -54,7 +62,7 @@ class ManifestGeneratorTest extends TestCase
                     'wikidata' => $equivEntities,
                 ],
                 'localRdfNamespaces' => [ 'a' => 'bb' ],
-                'externalServices' => [ 'a' => 'b' ],
+                'externalServices' => $externalServicesMappings,
             ],
             $result
         );
