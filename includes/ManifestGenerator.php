@@ -9,33 +9,30 @@ class ManifestGenerator
 {
     private $config;
     private $equivEntities;
+    private $conceptNamespaces;
 
     public function __construct(
         Config $config,
-        EquivEntities $equivEntities
+        EquivEntities $equivEntities,
+        ConceptNamespaces $conceptNamespaces
     ) {
-
         $this->config = $config;
         $this->equivEntities = $equivEntities;
+        $this->conceptNamespaces = $conceptNamespaces;
     }
 
     public function generate(): array
     {
-        $repo = WikibaseRepo::getDefaultInstance();
-        $rdfVocabulary = $repo->getRdfVocabulary();
-        $localEntitySource = $repo->getLocalEntitySource();
-        $conceptBaseUri = $localEntitySource->getConceptBaseUri();
-        $dataUri = $repo->getCanonicalDocumentUrls()[ $localEntitySource->getSourceName() ];
         $config = $this->config;
 
-        $localRdfNamespaces = $rdfVocabulary->getRawConceptNamespaces( $conceptBaseUri, $dataUri );
+        $localRdfNamespaces = $this->conceptNamespaces->getLocal();
         return [
             'name' => $config->get('Sitename'),
             'rootScriptUrl' => $config->get('Server') . $config->get('ScriptPath'),
             'equivEntities' => [
                 'wikidata' => $this->equivEntities->toArray(),
             ],
-            //'localRdfNamespaces' => $localRdfNamespaces,
+            'localRdfNamespaces' => $localRdfNamespaces,
         ];
     }
 

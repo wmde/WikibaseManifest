@@ -8,8 +8,12 @@ describe( 'Manifest', () => {
 			const { body } = await client.get( '/manifest' );
 			assert.hasAllKeys(
 				body,
-				[ 'name', 'rootScriptUrl', 'equivEntities' ]
+				[ 'name', 'rootScriptUrl', 'equivEntities', 'localRdfNamespaces' ]
 			);
+			assert.typeOf( body.name, 'string' )
+			assert.typeOf( body.rootScriptUrl, 'string' )
+			assert.typeOf( body.equivEntities, 'object' )
+			assert.typeOf( body.localRdfNamespaces, 'object' )
 		} );
 	} );
 } );

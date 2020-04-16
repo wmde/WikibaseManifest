@@ -3,11 +3,8 @@
 
 namespace WikibaseManifest\Test;
 
-use HashConfig;
-use MediaWiki\Extension\WikibaseManifest\ManifestGenerator;
 use MediaWiki\MediaWikiServices;
 use MediaWikiTestCase;
-use PHPUnit\Framework\TestCase;
 
 class ManifestGeneratorIntegrationTest extends MediaWikiTestCase
 {
@@ -31,17 +28,44 @@ class ManifestGeneratorIntegrationTest extends MediaWikiTestCase
         $generator = MediaWikiServices::getInstance()->getService('WikibaseManifestGenerator');
         $result = $generator->generate();
 
-        $this->assertEquals(
-            [
-                'name' => $siteString,
-                'rootScriptUrl' => $rootScriptUrlString,
-                'equivEntities' => [
-                    'wikidata' => [
-                        'P1' => 'P2'
-                    ],
-                ],
-            ],
-            $result
-        );
+        $this->assertArrayHasKey( 'name', $result );
+        $this->assertIsString( $result['name'] );
+        $this->assertEquals( $result['name'], $siteString );
+
+        $this->assertArrayHasKey( 'rootScriptUrl', $result );
+        $this->assertIsString( $result['rootScriptUrl'] );
+        $this->assertEquals( $result['rootScriptUrl'], $rootScriptUrlString );
+
+        $this->assertArrayHasKey( 'equivEntities', $result );
+        $this->assertArrayHasKey( 'wikidata', $result['equivEntities'] );
+        $this->assertIsArray( $result['equivEntities']['wikidata'] );
+        $this->assertArrayEquals( $result['equivEntities']['wikidata'], [ 'P1' => 'P2' ] );
+
+
+        $this->assertArrayHasKey( 'localRdfNamespaces', $result );
+        $this->assertIsArray( $result['localRdfNamespaces'] );
+        $rdfKeys = [
+            "",
+            "data",
+            "s",
+            "ref",
+            "v",
+            "t",
+            "tn",
+            "p",
+            "ps",
+            "psv",
+            "psn",
+            "pq",
+            "pqv",
+            "pqn",
+            "pr",
+            "prv",
+            "prn",
+            "no",
+        ];
+        foreach ( $rdfKeys as $key ) {
+            $this->assertArrayHasKey( $key, $result['localRdfNamespaces'] );
+        }
     }
 }
