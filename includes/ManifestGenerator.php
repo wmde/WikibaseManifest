@@ -39,6 +39,16 @@ class ManifestGenerator
             ],
             'localRdfNamespaces' => $localRdfNamespaces,
             'externalServices' => $externalServices->toArray(),
+            'entities' => [
+                'item' => [
+                    'namespaceId' => 0,
+                    'namespaceString' => ''
+                ],
+                'property' => [
+                    'namespaceId' => 123,
+                    'namespaceString' => 'Property'
+                ]
+            ]
         ];
     }
 

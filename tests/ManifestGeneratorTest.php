@@ -54,6 +54,7 @@ class ManifestGeneratorTest extends TestCase
         );
         $result = $generator->generate();
 
+        //TODO: Too restrictive, fails on new "entities" feature
         $this->assertEquals(
             [
                 'name' => $siteString,

@@ -31,7 +31,8 @@
 			"method": "GET",
 			"class": "MediaWiki\\Extension\\WikibaseManifest\\RestApi",
 			"services": [
-				"WikibaseManifestGenerator"
+				"WikibaseManifestGenerator",
+				"EmptyArrayCleaner"
 			]
 		}
 	],

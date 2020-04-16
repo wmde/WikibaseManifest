@@ -3,6 +3,7 @@
 use MediaWiki\Extension\WikibaseManifest\ConceptNamespaces;
 use MediaWiki\Extension\WikibaseManifest\ConfigEquivEntitiesFactory;
 use MediaWiki\Extension\WikibaseManifest\ConfigExternalServicesFactory;
+use MediaWiki\Extension\WikibaseManifest\EmptyArrayCleaner;
 use MediaWiki\Extension\WikibaseManifest\EquivEntitiesFactory;
 use MediaWiki\Extension\WikibaseManifest\ManifestGenerator;
 use MediaWiki\Extension\WikibaseManifest\WbManifest;
@@ -44,5 +45,8 @@ return [
         $localEntitySource = $repo->getLocalEntitySource();
         // TODO: Get Canonical Document URLS from a service not straight from remote
         return new ConceptNamespaces( $localEntitySource, $rdfVocabulary, $repo->getCanonicalDocumentUrls() );
+    },
+    'EmptyArrayCleaner' => function ( ) {
+        return new EmptyArrayCleaner();
     }
 ];
