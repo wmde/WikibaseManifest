@@ -9,18 +9,28 @@ use PHPUnit\Framework\TestCase;
 
 class ConfigExternalServicesFactoryTest extends TestCase {
 
-    public function test() {
-        // TODO write more tests that test the logic...
+    public function externalServicesDataProvider() {
+        return [
+            [ [], [
+                'WbManifestExternalServiceMapping' => [],
+                'WBRepoSettings' => [ 'sparqlEndpoint' => null ],
+            ] ],
+        ];
+    }
+
+    /**
+     * @dataProvider externalServicesDataProvider
+     * @param $expectedExternalServices
+     * @param $configArray
+     */
+    public function test( $expectedExternalServices, $configArray ) {
         $configMappingName = WbManifest::EXTERNAL_SERVICES_CONFIG;
-        $mockConfig = new HashConfig( [
-            'WbManifestExternalServiceMapping' => [],
-            'WBRepoSettings' => [ 'sparqlEndpoint' => null ],
-        ] );
+        $mockConfig = new HashConfig( $configArray );
 
         $factory = new ConfigExternalServicesFactory(
             $mockConfig, $configMappingName
         );
-        $this->assertEquals( [], $factory->getExternalServices()->toArray());
+        $this->assertEquals( $expectedExternalServices, $factory->getExternalServices()->toArray());
     }
 
 }
