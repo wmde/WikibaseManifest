@@ -3,6 +3,7 @@
 namespace WikibaseManifest\Test;
 
 use HashConfig;
+use MediaWiki\Extension\WikibaseManifest\ConceptNamespaces;
 use MediaWiki\Extension\WikibaseManifest\EquivEntities;
 use MediaWiki\Extension\WikibaseManifest\ManifestGenerator;
 use PHPUnit\Framework\TestCase;
@@ -27,9 +28,15 @@ class ManifestGeneratorTest extends TestCase
         );
         $equivEntities = new EquivEntities([ 'P1' => 'P2' ]);
 
+        $mockConceptNamespaces = $this->createMock( ConceptNamespaces::class );
+        $mockConceptNamespaces->expects( $this->once() )
+            ->method( 'getLocal' )
+            ->willReturn( [ 'a' => 'bb' ] );
+
         $generator = new ManifestGenerator(
             $mockConfig,
-            $equivEntities
+            $equivEntities,
+            $mockConceptNamespaces
         );
         $result = $generator->generate();
 
@@ -41,7 +48,8 @@ class ManifestGeneratorTest extends TestCase
                     'wikidata' => [
                         'P1' => 'P2'
                     ],
-                ]
+                ],
+                'localRdfNamespaces' => [ 'a' => 'bb' ]
             ],
             $result
         );
