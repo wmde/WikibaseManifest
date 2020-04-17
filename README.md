@@ -1,12 +1,13 @@
 # WikibaseManifest
 
-Decisions, how things work, and why are documented below:
+**__This is a prototype and is not currently supported or deployed by WMDE.__**
 
- - [API](/docs/api.md)
-   - [entityNamespaces](/docs/entityNamespaces.md)
-   - [equivEntitues](/docs/equivEntitues.md)
-   - [externalServices](/docs/externalServices.md)
-   - [localRdfNamespaces](/docs/localRdfNamespaces.md)
+WikibaseManifest is an extension that combines metadata about a Wikibase installation exposing it as a simple API.
+The goal is to help tool makers write tools that can target any wikibase.
+
+Example output can be found in the [examples directory](/docs/examples), e.g [wikidata](/docs/examples/wikidata.json).
+
+This would be exposed at an endpoint such as https://www.wikidata.org/w/rest.php/wikibase/manifest/v0/manifest
 
 ### Installation
 
@@ -34,6 +35,20 @@ $wgWbManifestWikidataMapping = [
 ```
 
 ### Development
+
+This extension was developed as part of the 2020 April prototyping week at WMDE.
+
+#### Decisions & reasoning
+
+Decisions, how things work, and why are documented below:
+
+ - [API](/docs/api.md)
+   - [entityNamespaces](/docs/entityNamespaces.md)
+   - [equivEntitues](/docs/equivEntitues.md)
+   - [externalServices](/docs/externalServices.md)
+   - [localRdfNamespaces](/docs/localRdfNamespaces.md)
+
+####Doing stuff
 
 We recommend using `mediawiki-docker-dev` for development.
 
