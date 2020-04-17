@@ -1,4 +1,4 @@
-# equivEntities
+# Equivalent entities
 
 We decided to go for a basic mapping between Wikidata entity ID and local Wikibase ID as:
  - Most tools etc that will be using this manifest will already have these Wikidata IDs hardcoded and thus the transition will be easier.
