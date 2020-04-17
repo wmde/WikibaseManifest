@@ -14,6 +14,7 @@ class ManifestGeneratorIntegrationTest extends MediaWikiTestCase
     private const EQUIV_ENTITIES = 'equivEntities';
     private const LOCAL_RDF_NAMESPACES = 'localRdfNamespaces';
     private const EXTERNAL_SERVICES = 'externalServices';
+    const ENTITIES = 'entities';
 
     public function testGenerate()
     {
@@ -79,5 +80,10 @@ class ManifestGeneratorIntegrationTest extends MediaWikiTestCase
         foreach ( $rdfKeys as $key ) {
             $this->assertArrayHasKey( $key, $result[self::LOCAL_RDF_NAMESPACES] );
         }
+
+        $this->assertArrayHasKey( self::ENTITIES, $result );
+        $this->assertIsArray( $result[self::ENTITIES] );
+        $this->assertArrayHasKey( 'item', $result[self::ENTITIES]  );
+        $this->assertArrayHasKey( 'property', $result[self::ENTITIES]  );
     }
 }

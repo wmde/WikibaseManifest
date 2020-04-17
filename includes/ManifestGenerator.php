@@ -11,17 +11,20 @@ class ManifestGenerator
     private $equivEntitiesFactory;
     private $conceptNamespaces;
     private $externalServicesFactory;
+    private $entityNamespacesFactory;
 
     public function __construct(
         Config $config,
         EquivEntitiesFactory $equivEntitiesFactory,
         ConceptNamespaces $conceptNamespaces,
-        ExternalServicesFactory $externalServicesFactory
+        ExternalServicesFactory $externalServicesFactory,
+        EntityNamespacesFactory $entityNamespacesFactory
     ) {
         $this->config = $config;
         $this->equivEntitiesFactory = $equivEntitiesFactory;
         $this->conceptNamespaces = $conceptNamespaces;
         $this->externalServicesFactory = $externalServicesFactory;
+        $this->entityNamespacesFactory = $entityNamespacesFactory;
     }
 
     public function generate(): array
@@ -39,16 +42,7 @@ class ManifestGenerator
             ],
             'localRdfNamespaces' => $localRdfNamespaces,
             'externalServices' => $externalServices->toArray(),
-            'entities' => [
-                'item' => [
-                    'namespaceId' => 0,
-                    'namespaceString' => ''
-                ],
-                'property' => [
-                    'namespaceId' => 123,
-                    'namespaceString' => 'Property'
-                ]
-            ]
+            'entities' => $this->entityNamespacesFactory->getEntityNamespaces()->toArray()
         ];
     }
 

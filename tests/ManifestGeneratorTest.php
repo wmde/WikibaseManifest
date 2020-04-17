@@ -4,6 +4,8 @@ namespace WikibaseManifest\Test;
 
 use HashConfig;
 use MediaWiki\Extension\WikibaseManifest\ConceptNamespaces;
+use MediaWiki\Extension\WikibaseManifest\EntityNamespaces;
+use MediaWiki\Extension\WikibaseManifest\EntityNamespacesFactory;
 use MediaWiki\Extension\WikibaseManifest\EquivEntities;
 use MediaWiki\Extension\WikibaseManifest\EquivEntitiesFactory;
 use MediaWiki\Extension\WikibaseManifest\ExternalServices;
@@ -46,11 +48,18 @@ class ManifestGeneratorTest extends TestCase
         $mockExternalServicesFactory->expects( $this->once() )
             ->method( 'getExternalServices' )
             ->willReturn( new ExternalServices( $externalServicesMappings ) );
+
+        $entityNamespaceMapping = [ 'item' => [ 'namespaceId' => 123, 'namespaceString' => 'Cat' ] ];
+        $mockEntityNamespacesFactory = $this->createMock( EntityNamespacesFactory::class );
+        $mockEntityNamespacesFactory->expects( $this->atLeastOnce() )
+            ->method('getEntityNamespaces')
+            ->willReturn( new EntityNamespaces( $entityNamespaceMapping ) );
         $generator = new ManifestGenerator(
             $mockConfig,
             $mockEquivEntitiesFactory,
             $mockConceptNamespaces,
-            $mockExternalServicesFactory
+            $mockExternalServicesFactory,
+            $mockEntityNamespacesFactory
         );
         $result = $generator->generate();
 
@@ -62,6 +71,7 @@ class ManifestGeneratorTest extends TestCase
             ],
             'localRdfNamespaces' => [ 'a' => 'bb' ],
             'externalServices' => $externalServicesMappings,
+            'entities' => $entityNamespaceMapping
         ];
 
         foreach ($expectedSubset as $key => $value) {

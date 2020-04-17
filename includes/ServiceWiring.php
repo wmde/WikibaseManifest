@@ -5,16 +5,16 @@ use MediaWiki\Extension\WikibaseManifest\ConfigEquivEntitiesFactory;
 use MediaWiki\Extension\WikibaseManifest\ConfigExternalServicesFactory;
 use MediaWiki\Extension\WikibaseManifest\EmptyArrayCleaner;
 use MediaWiki\Extension\WikibaseManifest\EquivEntitiesFactory;
+use MediaWiki\Extension\WikibaseManifest\LocalSourceEntityNamespacesFactory;
 use MediaWiki\Extension\WikibaseManifest\ManifestGenerator;
 use MediaWiki\Extension\WikibaseManifest\WbManifest;
 use MediaWiki\MediaWikiServices;
 use Wikibase\Repo\WikibaseRepo;
 
+
+//TODO: add services names to constants of a class
 return [
     'WikibaseManifestGenerator' => function ( MediaWikiServices $services ) {
-        /**
-         * @var EquivEntitiesFactory $equivEntitiesFactory
-         */
         $equivEntitiesFactory =
             $services->getService( 'WikibaseManifestConfigEquivEntitiesFactory' );
 
@@ -22,11 +22,14 @@ return [
 
         $externalServicesFactory = $services->getService( 'WikibaseManifestConfigExternalServicesFactory' );
 
+        $entityNamespacesFactory = $services->getService( 'WikibaseManifestLocalSourceEntityNamespacesFactory' );
+
         return new ManifestGenerator(
             $services->getMainConfig(),
             $equivEntitiesFactory,
             $conceptNamespaces,
-            $externalServicesFactory
+            $externalServicesFactory,
+            $entityNamespacesFactory
         );
     },
     'WikibaseManifestConfigEquivEntitiesFactory' => function ( MediaWikiServices $services ) {
@@ -48,5 +51,14 @@ return [
     },
     'EmptyArrayCleaner' => function ( ) {
         return new EmptyArrayCleaner();
-    }
+    },
+    'WikibaseManifestLocalSourceEntityNamespacesFactory' => function ( MediaWikiServices $services
+    ) {
+        $repo = WikibaseRepo::getDefaultInstance();
+        $localEntitySource = $repo->getLocalEntitySource();
+
+        return new LocalSourceEntityNamespacesFactory(
+            $localEntitySource, $services->getNamespaceInfo()
+        );
+    },
 ];
