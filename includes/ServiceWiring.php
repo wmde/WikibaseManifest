@@ -10,17 +10,16 @@ use MediaWiki\Extension\WikibaseManifest\WbManifest;
 use MediaWiki\MediaWikiServices;
 use Wikibase\Repo\WikibaseRepo;
 
-// TODO: add services names to constants of a class
 return [
-	'WikibaseManifestGenerator' => function ( MediaWikiServices $services ) {
+	WbManifest::WIKIBASE_MANIFEST_GENERATOR => function ( MediaWikiServices $services ) {
 		$equivEntitiesFactory =
-			$services->getService( 'WikibaseManifestConfigEquivEntitiesFactory' );
+			$services->getService( WbManifest::WIKIBASE_MANIFEST_CONFIG_EQUIV_ENTITIES_FACTORY );
 
-		$conceptNamespaces = $services->getService( 'WikibaseManifestConceptNamespaces' );
+		$conceptNamespaces = $services->getService( WbManifest::WIKIBASE_MANIFEST_CONCEPT_NAMESPACES );
 
-		$externalServicesFactory = $services->getService( 'WikibaseManifestConfigExternalServicesFactory' );
+		$externalServicesFactory = $services->getService( WbManifest::WIKIBASE_MANIFEST_CONFIG_EXTERNAL_SERVICES_FACTORY );
 
-		$entityNamespacesFactory = $services->getService( 'WikibaseManifestLocalSourceEntityNamespacesFactory' );
+		$entityNamespacesFactory = $services->getService( WbManifest::WIKIBASE_MANIFEST_LOCAL_SOURCE_ENTITY_NAMESPACES_FACTORY );
 
 		return new ManifestGenerator(
 			$services->getMainConfig(),
@@ -30,27 +29,27 @@ return [
 			$entityNamespacesFactory
 		);
 	},
-	'WikibaseManifestConfigEquivEntitiesFactory' => function ( MediaWikiServices $services ) {
+	WbManifest::WIKIBASE_MANIFEST_CONFIG_EQUIV_ENTITIES_FACTORY => function ( MediaWikiServices $services ) {
 		return new ConfigEquivEntitiesFactory(
 			$services->getMainConfig(), WbManifest::ENTITY_MAPPING_CONFIG
 		);
 	},
-	'WikibaseManifestConfigExternalServicesFactory' => function ( MediaWikiServices $services ) {
+	WbManifest::WIKIBASE_MANIFEST_CONFIG_EXTERNAL_SERVICES_FACTORY => function ( MediaWikiServices $services ) {
 		return new ConfigExternalServicesFactory(
 			$services->getMainConfig(), WbManifest::EXTERNAL_SERVICES_CONFIG
 		);
 	},
-	'WikibaseManifestConceptNamespaces' => function () {
+	WbManifest::WIKIBASE_MANIFEST_CONCEPT_NAMESPACES => function () {
 		$repo = WikibaseRepo::getDefaultInstance();
 		$rdfVocabulary = $repo->getRdfVocabulary();
 		$localEntitySource = $repo->getLocalEntitySource();
 		// TODO: Get Canonical Document URLS from a service not straight from remote
 		return new ConceptNamespaces( $localEntitySource, $rdfVocabulary, $repo->getCanonicalDocumentUrls() );
 	},
-	'EmptyArrayCleaner' => function () {
+	WbManifest::EMPTY_ARRAY_CLEANER => function () {
 		return new EmptyArrayCleaner();
 	},
-	'WikibaseManifestLocalSourceEntityNamespacesFactory' => function ( MediaWikiServices $services
+	WbManifest::WIKIBASE_MANIFEST_LOCAL_SOURCE_ENTITY_NAMESPACES_FACTORY => function ( MediaWikiServices $services
 	) {
 		$repo = WikibaseRepo::getDefaultInstance();
 		$localEntitySource = $repo->getLocalEntitySource();
