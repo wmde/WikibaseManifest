@@ -54,18 +54,19 @@ class ManifestGeneratorTest extends TestCase
         );
         $result = $generator->generate();
 
-        //TODO: Too restrictive, fails on new "entities" feature
-        $this->assertEquals(
-            [
-                'name' => $siteString,
-                'rootScriptUrl' => $serverString . $scriptString,
-                'equivEntities' => [
-                    'wikidata' => $equivEntities,
-                ],
-                'localRdfNamespaces' => [ 'a' => 'bb' ],
-                'externalServices' => $externalServicesMappings,
+        $expectedSubset = [
+            'name' => $siteString,
+            'rootScriptUrl' => $serverString . $scriptString,
+            'equivEntities' => [
+                'wikidata' => $equivEntities,
             ],
-            $result
-        );
+            'localRdfNamespaces' => [ 'a' => 'bb' ],
+            'externalServices' => $externalServicesMappings,
+        ];
+
+        foreach ($expectedSubset as $key => $value) {
+            $this->assertArrayHasKey($key, $result);
+            $this->assertSame($value, $result[$key]);
+        }
     }
 }
