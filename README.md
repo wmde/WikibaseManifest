@@ -5,7 +5,7 @@
 WikibaseManifest is an extension that combines metadata about a Wikibase installation exposing it as a simple API.
 The goal is to help tool makers write tools that can target any wikibase.
 
-Example output can be found in the [examples directory](/docs/examples), e.g [wikidata](/docs/examples/wikidata.json).
+Example output can be found in the [examples directory](/docs/examples), e.g [wikidata](/docs/examples/wikidata.json), raw json can be [retrieved too](https://raw.githubusercontent.com/wmde/WikibaseManifest/master/docs/examples/wikidata.json).
 
 This would be exposed at an endpoint such as https://www.wikidata.org/w/rest.php/wikibase/manifest/v0/manifest
 
