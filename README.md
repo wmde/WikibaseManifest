@@ -44,7 +44,7 @@ Decisions, how things work, and why are documented below:
 
  - [API](/docs/api.md)
    - [entityNamespaces](/docs/entityNamespaces.md)
-   - [equivEntitues](/docs/equivEntitues.md)
+   - [equivEntities](/docs/equivEntities.md)
    - [externalServices](/docs/externalServices.md)
    - [localRdfNamespaces](/docs/localRdfNamespaces.md)
 
