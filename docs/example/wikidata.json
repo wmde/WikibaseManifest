@@ -1,0 +1,44 @@
+{
+	"name": "Wikidata",
+	"rootScriptUrl": "https://www.wikidata.org/w",
+	"equivEntities": {
+		"wikidata": {}
+	},
+	"localRdfNamespaces": {
+		"": "http://www.wikidata.org/entity/",
+		"data": "https://www.wikidata.org/wiki/Special:EntityData/",
+		"s": "http://www.wikidata.org/entity/statement/",
+		"ref": "http://www.wikidata.org/reference/",
+		"v": "http://www.wikidata.org/value/",
+		"t": "http://www.wikidata.org/prop/direct/",
+		"tn": "http://www.wikidata.org/prop/direct-normalized/",
+		"p": "http://www.wikidata.org/prop/",
+		"ps": "http://www.wikidata.org/prop/statement/",
+		"psv": "http://www.wikidata.org/prop/statement/value/",
+		"psn": "http://www.wikidata.org/prop/statement/value-normalized/",
+		"pq": "http://www.wikidata.org/prop/qualifier/",
+		"pqv": "http://www.wikidata.org/prop/qualifier/value/",
+		"pqn": "http://www.wikidata.org/prop/qualifier/value-normalized/",
+		"pr": "http://www.wikidata.org/prop/reference/",
+		"prv": "http://www.wikidata.org/prop/reference/value/",
+		"prn": "http://www.wikidata.org/prop/reference/value-normalized/",
+		"no": "http://www.wikidata.org/prop/novalue/"
+
+	},
+	"externalServices": {
+		"queryservice": "https://query.wikidata.org/sparql",
+		"queryservice-ui": "https://query.wikidata.org",
+		"quickstatements": "https://tools.wmflabs.org/quickstatements",
+		"openrefine-reconcile": "https://tools.wmflabs.org/openrefine-wikidata/api"
+	},
+	"entities": {
+		"item": {
+			"namespaceId": 0,
+			"namespaceString": ""
+		},
+		"property": {
+			"namespaceId": 120,
+			"namespaceString": "Property"
+		}
+	}
+}

@@ -1,0 +1,40 @@
+{
+	"name": "docker-default",
+	"rootScriptUrl": "http://default.web.mw.localhost:8080/mediawiki",
+	"equivEntities": {
+		"wikidata": {}
+	},
+	"localRdfNamespaces": {
+		"": "http://default.web.mw.localhost:8080/entity/",
+		"data": "http://default.web.mw.localhost:8080/mediawiki/index.php?title=Special:EntityData/",
+		"s": "http://default.web.mw.localhost:8080/entity/statement/",
+		"ref": "http://default.web.mw.localhost:8080/reference/",
+		"v": "http://default.web.mw.localhost:8080/value/",
+		"t": "http://default.web.mw.localhost:8080/prop/direct/",
+		"tn": "http://default.web.mw.localhost:8080/prop/direct-normalized/",
+		"p": "http://default.web.mw.localhost:8080/prop/",
+		"ps": "http://default.web.mw.localhost:8080/prop/statement/",
+		"psv": "http://default.web.mw.localhost:8080/prop/statement/value/",
+		"psn": "http://default.web.mw.localhost:8080/prop/statement/value-normalized/",
+		"pq": "http://default.web.mw.localhost:8080/prop/qualifier/",
+		"pqv": "http://default.web.mw.localhost:8080/prop/qualifier/value/",
+		"pqn": "http://default.web.mw.localhost:8080/prop/qualifier/value-normalized/",
+		"pr": "http://default.web.mw.localhost:8080/prop/reference/",
+		"prv": "http://default.web.mw.localhost:8080/prop/reference/value/",
+		"prn": "http://default.web.mw.localhost:8080/prop/reference/value-normalized/",
+		"no": "http://default.web.mw.localhost:8080/prop/novalue/"
+	},
+	"externalServices": {
+		"queryservice": "http://foo.bar"
+	},
+	"entities": {
+		"item": {
+			"namespaceId": 120,
+			"namespaceString": "Item"
+		},
+		"property": {
+			"namespaceId": 122,
+			"namespaceString": "Property"
+		}
+	}
+}
