@@ -1,0 +1,45 @@
+{
+	"name": "Wikibase Registry",
+	"rootScriptUrl": "https://wikibase-registry.wmflabs.org/w",
+	"equivEntities": {
+		"wikidata": {
+			"P31": "P11",
+			"P279": "P14",
+			"P854": "P7"
+		}
+	},
+	"localRdfNamespaces": {
+		"": "http://wikibase-registry.wmflabs.org/entity/",
+		"data": "https://wikibase-registry.wmflabs.org/wiki/Special:EntityData/",
+		"s": "http://wikibase-registry.wmflabs.org/entity/statement/",
+		"ref": "http://wikibase-registry.wmflabs.org/reference/",
+		"v": "http://wikibase-registry.wmflabs.org/value/",
+		"t": "http://wikibase-registry.wmflabs.org/prop/direct/",
+		"tn": "http://wikibase-registry.wmflabs.org/prop/direct-normalized/",
+		"p": "http://wikibase-registry.wmflabs.org/prop/",
+		"ps": "http://wikibase-registry.wmflabs.org/prop/statement/",
+		"psv": "http://wikibase-registry.wmflabs.org/prop/statement/value/",
+		"psn": "http://wikibase-registry.wmflabs.org/prop/statement/value-normalized/",
+		"pq": "http://wikibase-registry.wmflabs.org/prop/qualifier/",
+		"pqv": "http://wikibase-registry.wmflabs.org/prop/qualifier/value/",
+		"pqn": "http://wikibase-registry.wmflabs.org/prop/qualifier/value-normalized/",
+		"pr": "http://wikibase-registry.wmflabs.org/prop/reference/",
+		"prv": "http://wikibase-registry.wmflabs.org/prop/reference/value/",
+		"prn": "http://wikibase-registry.wmflabs.org/prop/reference/value-normalized/",
+		"no": "http://wikibase-registry.wmflabs.org/prop/novalue/"
+	},
+	"externalServices": {
+		"queryservice": "https://wikibase-registry-query.wmflabs.org/proxy/wdqs/bigdata/namespace/wdq/sparql",
+		"queryservice-ui": "https://wikibase-registry-query.wmflabs.org"
+	},
+	"entities": {
+		"item": {
+			"namespaceId": 120,
+			"namespaceString": "Item"
+		},
+		"property": {
+			"namespaceId": 122,
+			"namespaceString": "Property"
+		}
+	}
+}
