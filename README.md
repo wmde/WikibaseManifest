@@ -48,7 +48,7 @@ Decisions, how things work, and why are documented below:
    - [externalServices](/docs/externalServices.md)
    - [localRdfNamespaces](/docs/localRdfNamespaces.md)
 
-####Doing stuff
+#### Doing stuff
 
 We recommend using `mediawiki-docker-dev` for development.
 
