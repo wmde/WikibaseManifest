@@ -15,7 +15,8 @@ class EntityNamespaces {
     private $mapping;
 
     /**
-     * @param string[] $mapping Key entity type, Value array keyed with namespaceId and namespaceString
+     * @param array[] $mapping Key entity type, Value array keyed with namespaceId and
+     * namespaceString
      */
     public function __construct( array $mapping )
     {

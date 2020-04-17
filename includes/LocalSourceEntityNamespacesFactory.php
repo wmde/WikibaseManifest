@@ -4,28 +4,29 @@
 namespace MediaWiki\Extension\WikibaseManifest;
 
 
+use NamespaceInfo;
 use Wikibase\DataAccess\EntitySource;
 
 class LocalSourceEntityNamespacesFactory implements EntityNamespacesFactory {
-
-    /**
-     * @var EntitySource
-     */
     private $localEntitySource;
+    private $namespaceInfo;
 
-    public function __construct( EntitySource $localEntitySource ) {
+    public function __construct( EntitySource $localEntitySource, NamespaceInfo $namespaceInfo ) {
         $this->localEntitySource = $localEntitySource;
+        $this->namespaceInfo = $namespaceInfo;
     }
 
     public function getEntityNamespaces(): EntityNamespaces {
         $entityNamespaceMapping = array_map(
             function ( $x ) {
-                return [ EntityNamespaces::NAMESPACE_ID => $x ];
+                return [
+                    EntityNamespaces::NAMESPACE_ID => $x,
+                    EntityNamespaces::NAMESPACE_STRING => $this->namespaceInfo->getCanonicalName(
+                        $x )
+                ];
             },
             $this->localEntitySource->getEntityNamespaceIds()
         );
-
-        // TODO add namespace string from wgCanonicalNamespaces (does that even exist) or something?
 
         return new EntityNamespaces( $entityNamespaceMapping );
     }
