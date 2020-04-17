@@ -9,9 +9,9 @@ class EmptyArrayCleanerTest extends TestCase {
 
 	public function dataProvider() {
 		return [
-			[ ['cat' => 'dog'], ['cat' => 'dog'] ],
-			[ ['cat' => [] ], ['cat' => new ArrayObject()] ],
-			[ ['cat' => [ 'dog' => [] ] ], ['cat' => [ 'dog' => new ArrayObject() ] ] ]
+			[ [ 'cat' => 'dog' ], [ 'cat' => 'dog' ] ],
+			[ [ 'cat' => [] ], [ 'cat' => new ArrayObject() ] ],
+			[ [ 'cat' => [ 'dog' => [] ] ], [ 'cat' => [ 'dog' => new ArrayObject() ] ] ]
 		];
 	}
 

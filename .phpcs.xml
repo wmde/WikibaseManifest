@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ruleset>
+	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
+		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPrivate" />
+		<exclude name="MediaWiki.Commenting.MissingCovers.MissingCovers" />
+	</rule>
+
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property name="lineLimit" value="140" />
+		</properties>
+	</rule>
+    <file>.</file>
+</ruleset>

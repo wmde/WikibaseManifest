@@ -4,7 +4,7 @@ namespace MediaWiki\Extension\WikibaseManifest;
 
 class WbManifest {
 
-    const ENTITY_MAPPING_CONFIG = 'WbManifestWikidataEntityMapping';
-    const EXTERNAL_SERVICES_CONFIG = 'WbManifestExternalServiceMapping';
+	public const ENTITY_MAPPING_CONFIG = 'WbManifestWikidataEntityMapping';
+	public const EXTERNAL_SERVICES_CONFIG = 'WbManifestExternalServiceMapping';
 
 }

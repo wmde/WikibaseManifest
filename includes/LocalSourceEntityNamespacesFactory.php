@@ -1,33 +1,31 @@
 <?php
 
-
 namespace MediaWiki\Extension\WikibaseManifest;
-
 
 use NamespaceInfo;
 use Wikibase\DataAccess\EntitySource;
 
 class LocalSourceEntityNamespacesFactory implements EntityNamespacesFactory {
-    private $localEntitySource;
-    private $namespaceInfo;
+	private $localEntitySource;
+	private $namespaceInfo;
 
-    public function __construct( EntitySource $localEntitySource, NamespaceInfo $namespaceInfo ) {
-        $this->localEntitySource = $localEntitySource;
-        $this->namespaceInfo = $namespaceInfo;
-    }
+	public function __construct( EntitySource $localEntitySource, NamespaceInfo $namespaceInfo ) {
+		$this->localEntitySource = $localEntitySource;
+		$this->namespaceInfo = $namespaceInfo;
+	}
 
-    public function getEntityNamespaces(): EntityNamespaces {
-        $entityNamespaceMapping = array_map(
-            function ( $x ) {
-                return [
-                    EntityNamespaces::NAMESPACE_ID => $x,
-                    EntityNamespaces::NAMESPACE_STRING => $this->namespaceInfo->getCanonicalName(
-                        $x )
-                ];
-            },
-            $this->localEntitySource->getEntityNamespaceIds()
-        );
+	public function getEntityNamespaces(): EntityNamespaces {
+		$entityNamespaceMapping = array_map(
+			function ( $x ) {
+				return [
+					EntityNamespaces::NAMESPACE_ID => $x,
+					EntityNamespaces::NAMESPACE_STRING => $this->namespaceInfo->getCanonicalName(
+						$x )
+				];
+			},
+			$this->localEntitySource->getEntityNamespaceIds()
+		);
 
-        return new EntityNamespaces( $entityNamespaceMapping );
-    }
+		return new EntityNamespaces( $entityNamespaceMapping );
+	}
 }
