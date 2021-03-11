@@ -1,3 +1,5 @@
+[DISCONTINUED] The prototypical implementation has been replaced by the production-ready Mediawiki extension, developed on WMF Gerrit: https://gerrit.wikimedia.org/r/admin/repos/mediawiki/extensions/WikibaseManifest
+
 # WikibaseManifest
 
 **__This is a prototype and is not currently supported or deployed by WMDE.__**
